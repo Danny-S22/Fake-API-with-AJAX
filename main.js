@@ -4,15 +4,18 @@ $(document).ready(function () {
         type: "GET",
         cache: false,
         success: function (data) {
-            $.each(data, function(key, value) {
+            var tableBody = $('#table');
+            $.each(data, function (_, value) {
                 var row = $('<tr></tr>');
-                var tableBody = $('#table');
-                row.append('<td>' + value.userID + '</td>');
+                row.append('<td>' + value.userId + '</td>');
                 row.append('<td>' + value.id + '</td>');
                 row.append('<td>' + value.title + '</td>');
                 row.append('<td>' + value.completed + '</td>');
                 tableBody.append(row);
             });
+        },
+        error: function (xhr, status, error) {
+            console.log("An error occurred: " + error);
         }
-    }); 
+    });
 });
